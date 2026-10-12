@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analysis History | Password Security Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container history-container">
+
+        <header class="page-header">
+            <div class="icon">📊</div>
+            <p class="eyebrow">SECURITY REPORTS</p>
+            <h1>Analysis History</h1>
+            <p class="subtitle">
+                Review your previous password assessments.
+            </p>
+        </header>
+
+        <nav class="history-navigation">
+            <a href="{{ url_for('home') }}">← Back to Analyzer</a>
+        </nav>
+
+        <section class="result-card">
+            <h2>Recent Assessments</h2>
+
+            {% if history %}
+                <div class="history-table-wrapper">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Score</th>
+                                <th>Strength</th>
+                                <th>Length</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for item in history %}
+                                <tr>
+                                    <td>{{ item.created_at }}</td>
+                                    <td>{{ item.score }}/100</td>
+                                    <td>
+                                        <span class="strength-badge">
+                                            {{ item.strength }}
+                                        </span>
+                                    </td>
+                                    <td>{{ item.password_length }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="empty-history">
+                    No analysis history yet. Analyze a test password first.
+                </p>
+            {% endif %}
+        </section>
+
+        <p class="disclaimer">
+            History stores analysis metadata only, not the passwords.
+            Avoid entering passwords used for real accounts.
+        </p>
+
+        <footer>
+            <p>Password Security Analyzer · Educational project</p>
+        </footer>
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Security Analyzer</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <div class="icon">🔐</div>
+            <p class="eyebrow">CYBERSECURITY TOOLKIT</p>
+            <h1>Password Security Analyzer</h1>
+            <p class="subtitle">
+                Evaluate password patterns and identify potential weaknesses.
+            </p>
+        </header>
+
+        <form id="passwordForm">
+            <label for="password">Test password</label>
+
+            <div class="password-box">
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter a dummy password"
+                    autocomplete="off"
+                    maxlength="1024"
+                    required
+                >
+                <button type="button" id="togglePassword">Show</button>
+            </div>
+
+            <button type="submit" class="analyze-btn">
+                Analyze Security
+            </button>
+        </form>
+
+        <section id="report" class="report" aria-live="polite" hidden>
+            <div class="score-card">
+                <p class="section-label">SECURITY SCORE</p>
+                <div class="score-line">
+                    <span id="scoreValue">0</span>
+                    <span class="score-total">/ 100</span>
+                </div>
+                <div class="meter">
+                    <div id="meterFill"></div>
+                </div>
+                <p id="strength" class="strength">Not analyzed</p>
+                <p class="disclaimer">
+                    This is a heuristic score, not a guarantee of security.
+                </p>
+            </div>
+
+            <div class="result-card">
+                <h2>Security Checks</h2>
+                <ul id="checksList" class="result-list"></ul>
+            </div>
+
+            <div class="result-card">
+                <h2>Detected Risks</h2>
+                <ul id="issuesList" class="result-list"></ul>
+            </div>
+
+            <div class="result-card">
+                <h2>Recommendations</h2>
+                <ul id="suggestions" class="result-list"></ul>
+            </div>
+
+            <div class="result-card">
+                <h2>Search Space Estimate</h2>
+                <p id="searchSpace"></p>
+                <p class="disclaimer">
+                    This theoretical estimate assumes a uniform character
+                    distribution. Real passwords are often predictable, so
+                    it should not be treated as a crack-time prediction.
+                </p>
+            </div>
+        </section>
+
+        <p id="errorMessage" class="error-message" role="alert"></p>
+
+        <footer>
+            <p>
+                Privacy first: this demo does not intentionally store
+                passwords. Use dummy passwords only.
+            </p>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

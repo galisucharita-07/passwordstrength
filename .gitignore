@@ -1,0 +1,28 @@
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Local database
+password_history.db
+password_history.db-journal
+
+# Test and coverage cache
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
