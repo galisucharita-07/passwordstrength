@@ -88,18 +88,23 @@ def analyze_password(password):
     # 1. Length assessment
     length = len(password)
 
-    if length >= 16:
-        score += 30
+    
+    if length >= 20:
+        score += 50
         checks["length"] = "Excellent"
+    elif length >= 16:
+        score += 40
+        checks["length"] = "Very Good"
     elif length >= 12:
-        score += 24
+        score += 30
         checks["length"] = "Good"
     elif length >= 8:
-        score += 15
+        score += 20
         checks["length"] = "Fair"
     else:
         score += 5
         checks["length"] = "Poor"
+
         issues.append("Password is shorter than 8 characters.")
         suggestions.append("Use at least 12 characters, preferably more.")
 
